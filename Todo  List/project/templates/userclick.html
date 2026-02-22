@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>User</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {
+      background: #f4f6fb;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .admin-wrapper {
+      min-height: 90vh;
+      display: flex;
+      padding-bottom: 870px;
+      align-items: center;
+      justify-content:center ;
+    }
+
+    .admin-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 35px 25px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      transition: 0.3s ease;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .admin-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .admin-avatar i {
+      font-size: 55px;
+      color: #6366f1;
+    }
+
+    .admin-card h3 {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .admin-card p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .todo-btn {
+      background: #6366f1;
+      color: white;
+      border-radius: 30px;
+      padding: 10px 28px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      margin: 6px;
+    }
+
+    .todo-btn:hover {
+      background: #4f46e5;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+{% include 'base.html' %}
+
+<div class="admin-wrapper">
+  <div class="admin-card">
+    <div class="admin-avatar">
+      <i class="fa fa-user"></i>
+    </div>
+
+    <h3>User Panel</h3>
+    <p>Manage tasks, users, and system settings efficiently.</p>
+
+    <a href="{% url 'userignup' %}" class="todo-btn">Sign Up</a>
+    <a href= "{% url 'userlogin' %}" class="todo-btn">Login</a>
+
+  </div>
+</div>
+
+</body>
+</html>

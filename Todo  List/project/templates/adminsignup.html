@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Signup | TODO LIST</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+   
+    .signup-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 100px 15px 60px;
+    }
+
+    /* Card */
+    .signup-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+
+    .signup-card .icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .signup-card .icon i {
+      font-size: 36px;
+      color: #6366f1;
+    }
+
+    .signup-card h3 {
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .form-control {
+      border-radius: 30px;
+      padding: 12px 18px;
+      margin-bottom: 15px;
+    }
+
+    .btn-signup {
+      width: 100%;
+      border-radius: 30px;
+      padding: 12px;
+      background: #6366f1;
+      color: white;
+      font-weight: 500;
+      border: none;
+    }
+
+    .btn-signup:hover {
+      background: #4f46e5;
+    }
+
+    .login-link {
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #6366f1;
+      font-weight: 500;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+{% include 'base.html' %}
+<div class="signup-wrapper">
+  <div class="signup-card">
+    <div class="icon">
+      <i class="fa fa-user"></i>
+    </div>
+    <h3>Admin Signup</h3>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" class="form-control" name="u" placeholder="Username" required>
+     <input type="text" class="form-control" name="f" placeholder="Name" required>
+
+      <input type="email" class="form-control" name="e" placeholder="Email" required>
+
+      <input type="password" class="form-control" name="p" placeholder="Password" required>
+
+      <input type= "text" class="form-control" name="n" placeholder="Phone Number" required>
+
+      <button type="submit" class="btn btn-signup mt-2">
+        Create Account
+      </button>
+    </form>
+    <div class="login-link">
+      Already have an account?
+      <a href="{% url 'adminlogin' %}">Login</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-lg border-0 rounded-lg">
+
+                <div class="card-header text-white"
+                     style="background: linear-gradient(135deg, #1f2933, #374151);">
+                    <h4 class="mb-0">
+                        <i class="fa fa-plus-circle"></i> Add New Task
+                    </h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Task Title</label>
+                            <input type="text" name="title" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Description</label>
+                            <textarea name="description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Category</label>
+                                <select name="category" class="form-control">
+                                    <option value="">-- Select Category --</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">
+                                            {{ category.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Priority</label>
+                                <select name="priority" class="form-control">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Due Date</label>
+                            <input type="date" name="due_date" class="form-control">
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{% url 'running_tasks' %}"
+                               class="btn btn-outline-secondary mr-2">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="fa fa-save"></i> Save Task
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ POPUP CONFIRM -->
+{% if task_success %}
+<script>
+  if (confirm("Task added successfully! Click OK to go to Dashboard.")) {
+    window.location.href = "{% url 'running_tasks' %}";
+  }
+</script>
+{% endif %}
+
+{% endblock %}

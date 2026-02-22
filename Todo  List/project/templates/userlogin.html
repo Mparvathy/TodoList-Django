@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Login | TODO LIST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+  
+
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 200px;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .icon i {
+      font-size: 34px;
+      color: #6366f1;
+    }
+
+    .form-control {
+      border-radius: 30px;
+      padding: 12px 18px;
+      margin-bottom: 15px;
+    }
+
+    .btn-login {
+      width: 100%;
+      border-radius: 30px;
+      padding: 12px;
+      background: #6366f1;
+      color: white;
+      border: none;
+    }
+
+    .btn-login:hover {
+      background: #4f46e5;
+    }
+  </style>
+</head>
+
+<body>
+{% include 'base.html' %}
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <div class="icon">
+      <i class="fa fa-user"></i>
+    </div>
+
+    <h4 class="mb-4">User Login</h4>
+
+    <!-- ERROR MESSAGE -->
+     {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible fade show auto-dismiss" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="u" class="form-control" placeholder="Username" required>
+      <input type="password" name="p" class="form-control" placeholder="Password" required>
+      <button type="submit" class="btn btn-login mt-2">Login</button>
+    </form>
+
+  </div>
+</div>
+
+<div class="modal fade" id="loginSuccessModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+          <i class="fa fa-check-circle"></i> Login Successful
+        </h5>
+      </div>
+
+      <div class="modal-body text-center">
+        <p>Welcome  {{ user.first_name }} ! Click continue to open your dashboard.</p>
+        <a href="{% url 'userdashboard' %}" class="btn btn-success px-4">
+          Continue
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      const alerts = document.querySelectorAll('.auto-dismiss');
+      alerts.forEach(function (alert) {
+        alert.classList.remove('show');
+        alert.classList.add('fade');
+        setTimeout(() => alert.remove(), 500);
+      });
+    },2800); // ✅ 2 seconds
+  });
+</script>
+{% if show_modal %}
+<script>
+  $(document).ready(function(){
+    $('#loginSuccessModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+    $('#loginSuccessModal').modal('show');
+  });
+</script>
+{% endif %}
+</body>
+</html>

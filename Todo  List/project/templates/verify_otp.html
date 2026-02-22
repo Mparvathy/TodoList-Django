@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verify OTP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body{
+background:#f1f5f9;
+}
+
+.card-box{
+max-width:420px;
+margin:auto;
+margin-top:80px;
+padding:40px;
+border-radius:18px;
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+background:white;
+text-align:center;
+}
+
+.otp-input{
+letter-spacing:8px;
+font-size:28px;
+text-align:center;
+border-radius:40px;
+height:55px;
+}
+
+.verify-btn{
+border-radius:40px;
+padding:12px;
+background:#6366f1;
+color:white;
+width:100%;
+}
+
+.verify-btn:hover{
+background:#4f46e5;
+}
+
+.resend{
+font-size:14px;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+{% include 'base.html' %}
+<div class="card-box">
+
+<i class="fa fa-mobile fa-3x text-primary mb-3"></i>
+
+<h4>OTP Verification</h4>
+<p class="text-muted">Enter OTP sent to your registered email address</p>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-danger">{{message}}</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="otp" maxlength="6"
+class="form-control otp-input mb-3"
+placeholder="------" required autofocus>
+
+<button class="btn verify-btn">Verify OTP</button>
+
+</form>
+
+<div class="resend">
+Didn't receive OTP?
+<a href="{% url 'userlogin' %}">Resend</a>
+</div>
+
+</div>
+
+</body>
+</html>

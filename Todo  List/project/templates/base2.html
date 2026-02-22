@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard | Todo</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6fb;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #1f2933;
+    padding: 12px 25px;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.navbar-nav .nav-link {
+    color: #cbd5e1 !important;
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #ffffff !important;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    background: #1f2937;
+    border: none;
+}
+
+.dropdown-menu a,
+.dropdown-item-text {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background: #374151;
+    color: #ffffff;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    font-size: 11px;
+}
+
+.content {
+    padding: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">TODO LIST</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMenu">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'userdashboard' %}">
+                    <i class="fa fa-home"></i> Home
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i> Tasks
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'add_task' %}">
+                        <i class="fa fa-plus-circle"></i> Add Task
+                    </a>
+                    <a class="dropdown-item" href="{% url 'running_tasks' %}">
+                        <i class="fa fa-play-circle"></i> Running
+                    </a>
+                    <a class="dropdown-item" href="{% url 'completed_tasks' %}">
+                        <i class="fa fa-check-circle"></i> Completed
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+        <!-- RIGHT ICONS -->
+        <div class="d-flex align-items-center">
+
+            <!-- 🔔 NOTIFICATION BELL -->
+            <div class="dropdown mr-3 position-relative">
+                <i class="fa fa-bell text-white dropdown-toggle"
+                   data-toggle="dropdown"
+                   style="font-size:22px; cursor:pointer;"></i>
+
+                {% if notification_count > 0 %}
+                    <span class="badge badge-danger notification-badge">
+                        {{ notification_count }}
+                    </span>
+                {% endif %}
+
+                <div class="dropdown-menu dropdown-menu-right p-3" style="width:320px;">
+                    <h6 class="dropdown-header text-light">
+                        Notifications
+                    </h6>
+
+                    {% if due_today_tasks %}
+                        <div class="dropdown-item-text text-warning font-weight-bold">
+                            ⏰ Due Today
+                        </div>
+                        {% for task in due_today_tasks %}
+                            <div class="dropdown-item-text small">
+                                📌 {{ task.title }}
+                            </div>
+                        {% endfor %}
+                        <div class="dropdown-divider"></div>
+                    {% endif %}
+
+                    {% if expired_tasks %}
+                        <div class="dropdown-item-text text-danger font-weight-bold">
+                            ❌ Expired Tasks
+                        </div>
+                        {% for task in expired_tasks %}
+                            <div class="dropdown-item-text small">
+                                ⛔ {{ task.title }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if not due_today_tasks and not expired_tasks %}
+                        <div class="dropdown-item-text text-muted text-center">
+                            No notifications 🎉
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- USER MENU -->
+            <div class="dropdown">
+                <i class="fa fa-user-circle text-white dropdown-toggle"
+                   data-toggle="dropdown"
+                   style="font-size:22px; cursor:pointer;"></i>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{% url 'profile' %}">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item text-danger">
+                            <i class="fa fa-sign-out"></i> Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

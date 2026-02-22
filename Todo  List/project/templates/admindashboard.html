@@ -1,0 +1,91 @@
+{% extends 'base3.html' %}
+{% load static %}
+{% block content %}
+
+<div class="dashboard-container">
+    <div class="welcome-card">
+        <h2>Welcome to Your Dashboard</h2>
+        <p>
+            Manage your tasks efficiently, track your progress, and stay organized
+            with your personal Todo List dashboard.
+        </p>
+
+    </div>
+</div>
+
+<style>
+    .dashboard-container {
+        min-height: calc(100vh - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: #f4f6fb;
+    }
+
+    .welcome-card {
+        background: #ffffff;
+        padding: 40px 35px;
+        border-radius: 16px;
+        max-width: 520px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    }
+
+    .welcome-card h2 {
+        font-size: 26px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 15px;
+    }
+
+    .welcome-card p {
+        font-size: 15px;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .dashboard-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .action-btn {
+        padding: 12px 26px;
+        border-radius: 24px;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+    .action-btn.primary {
+        background: #4f46e5;
+        color: #ffffff;
+    }
+
+    .action-btn.primary:hover {
+        background: #4338ca;
+        color: #ffffff;
+    }
+
+    .action-btn.secondary {
+        background: #eef2ff;
+        color: #4f46e5;
+    }
+
+    .action-btn.secondary:hover {
+        background: #e0e7ff;
+    }
+
+    @media (max-width: 576px) {
+        .dashboard-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+
+{% endblock %}

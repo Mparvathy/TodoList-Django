@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6fb;
+    }
+
+    /* Navbar */
+    .navbar-wrapper {
+        width: 100%;
+        background: linear-gradient(90deg, #4f46e5, #22c55e);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .color-navbar {
+        max-width: 1280px;
+        margin: auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Brand */
+    .brand {
+        font-size: 22px;
+        font-weight: 600;
+        color: #ffffff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Links */
+    .nav-links {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 15px;
+        padding: 8px 18px;
+        border-radius: 22px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-links .active {
+        background: #ffffff;
+        color: #4f46e5;
+    }
+
+    /* Page content */
+    .content {
+        max-width: 1280px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .color-navbar {
+            flex-direction: column;
+            gap: 12px;
+        }
+        .nav-links {
+            gap: 12px;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar-wrapper">
+    <nav class="color-navbar">
+        <a href="/" class="brand">📝 TODO LIST</a>
+
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="{% url 'adminclick' %}">Admin</a>
+            <a href="{% url 'userclick' %}">User</a>
+        </div>
+    </nav>
+</div>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; 
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6fb;
+    }
+
+    /* Main content area */
+    .content {
+        height: calc(100vh - 80px); 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Cards container */
+    .card-wrapper {
+        display: flex;
+        gap: 40px;
+        width: 100%;
+        max-width: 900px;
+        padding: 0 20px;
+    }
+
+    /* Card */
+    .todo-card {
+        flex: 1;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 40px 20px;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+        transition: all 0.25s ease;
+    }
+
+    .todo-card:hover {
+        border-color: #4f46e5;
+        transform: translateY(-6px);
+    }
+
+    .todo-card h4 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 25px;
+    }
+
+    .todo-btn {
+        background: #4f46e5;
+        color: #ffffff;
+        border-radius: 24px;
+        padding: 12px 38px;
+        font-size: 15px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .todo-btn:hover {
+        background: #4338ca;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .card-wrapper {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        html, body {
+            overflow: auto; /* allow scroll on mobile */
+        }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+<div class="hero-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-5 mb-4">
+         
+                <div class="card-wrapper">
+    <div class="todo-card">
+        <h4>Admin Panel</h4>
+        <a href="{% url 'adminclick' %}" class="todo-btn">Admin Login</a>
+    </div>
+
+    <div class="todo-card">
+        <h4>User Panel</h4>
+        <a href="{% url 'userclick' %}" class="todo-btn">User Login</a>
+    </div>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base3.html' %}
+{% block content %}
+
+<style>
+.page-wrapper {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Card grid */
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* Card */
+.user-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* Avatar */
+.avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+/* Name */
+.user-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Button */
+.view-btn {
+    border-radius: 20px;
+    padding: 6px 18px;
+}
+</style>
+
+<div class="page-wrapper">
+
+    <h4 class="mb-4 text-primary">
+        <i class="fa fa-users"></i> Users & Tasks
+    </h4>
+
+    <div class="user-grid">
+        {% for user in users %}
+        <div class="user-card">
+
+            <div class="avatar">
+                {{ user.first_name|first|upper }}
+            </div>
+
+            <div class="user-name">
+                {{ user.first_name }} {{ user.last_name }}
+            </div>
+
+            <a href="{% url 'admin_user_tasks' user.id %}"
+               class="btn btn-outline-primary btn-sm view-btn">
+                <i class="fa fa-eye"></i> View Tasks
+            </a>
+
+        </div>
+        {% empty %}
+        <p class="text-muted text-center w-100">
+            No users with tasks
+        </p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

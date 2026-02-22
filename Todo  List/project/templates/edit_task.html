@@ -1,0 +1,99 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fa fa-edit"></i> Edit Task
+                    </h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Title -->
+                        <div class="form-group">
+                            <label>Task Title</label>
+                            <input type="text"
+                                   name="title"
+                                   class="form-control"
+                                   value="{{ task.title }}"
+                                   required>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description"
+                                      class="form-control"
+                                      rows="3">{{ task.description }}</textarea>
+                        </div>
+
+                        <!-- Category & Priority -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Category</label>
+                                <select name="category" class="form-control">
+                                    <option value="">-- Select Category --</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}"
+                                            {% if task.category.id == category.id %}selected{% endif %}>
+                                            {{ category.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Priority</label>
+                                <select name="priority" class="form-control">
+                                    <option value="low" {% if task.priority == 'low' %}selected{% endif %}>Low</option>
+                                    <option value="medium" {% if task.priority == 'medium' %}selected{% endif %}>Medium</option>
+                                    <option value="high" {% if task.priority == 'high' %}selected{% endif %}>High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="status" class="form-control">
+                                <option value="running" {% if task.status == 'running' %}selected{% endif %}>Running</option>
+                                <option value="completed" {% if task.status == 'completed' %}selected{% endif %}>Completed</option>
+                            </select>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="form-group">
+                            <label>Due Date</label>
+                            <input type="date"
+                                   name="due_date"
+                                   class="form-control"
+                                   value="{{ task.due_date|date:'Y-m-d' }}">
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'running_tasks' %}" class="btn btn-secondary mr-2">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="fa fa-save"></i> Update Task
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
