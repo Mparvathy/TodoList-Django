@@ -1,114 +1,118 @@
-📝 TodoList Django
+# 📝 TodoList Django
 
-A simple Todo List Web Application built with Django that allows users to create, manage, and track their daily tasks efficiently.
+A simple **Todo List Web Application built with Django** that allows
+users to create, manage, and track their daily tasks efficiently.
 
-This project demonstrates basic CRUD operations (Create, Read, Update, Delete) using the Django framework.
+This project demonstrates basic **CRUD operations (Create, Read, Update,
+Delete)** using the Django framework.
 
-🚀 Features
+------------------------------------------------------------------------
 
-Add new tasks
+## 🚀 Features
 
-View task list
+-   Add new tasks
+-   View task list
+-   Update existing tasks
+-   Delete tasks
+-   Mark tasks as completed
+-   Simple and clean user interface
+-   Django admin panel support
 
-Update existing tasks
+------------------------------------------------------------------------
 
-Delete tasks
+## 🛠️ Technologies Used
 
-Mark tasks as completed
+-   Python
+-   Django
+-   HTML
+-   CSS
+-   SQLite
+-   Bootstrap (optional)
 
-Simple and clean user interface
+------------------------------------------------------------------------
 
-Django admin panel support
+## 📂 Project Structure
 
-🛠️ Technologies Used
+    TodoList-Django
+    │
+    ├── todoapp
+    │   ├── migrations
+    │   ├── templates
+    │   ├── models.py
+    │   ├── views.py
+    │   ├── urls.py
+    │
+    ├── db.sqlite3
+    ├── manage.py
+    └── README.md
 
-Python
+------------------------------------------------------------------------
 
-Django
+## ⚙️ Installation
 
-HTML
+### 1. Clone the Repository
 
-CSS
+    git clone https://github.com/Mparvathy/TodoList-Django.git
+    cd TodoList-Django
 
-SQLite
+### 2. Create Virtual Environment
 
-Bootstrap (optional)
+    python -m venv venv
 
-Django is a high-level Python web framework used to build secure and scalable web applications.
+Activate the environment:
 
-📂 Project Structure
-TodoList-Django
-│
-├── todoapp
-│   ├── migrations
-│   ├── templates
-│   ├── models.py
-│   ├── views.py
-│   ├── urls.py
-│
-├── db.sqlite3
-├── manage.py
-└── README.md
-⚙️ Installation
-1️⃣ Clone the Repository
-git clone https://github.com/Mparvathy/TodoList-Django.git
-cd TodoList-Django
-2️⃣ Create Virtual Environment
-python -m venv venv
+**Windows**
 
-Activate it:
+    venv\Scripts\activate
 
-Windows
+**Mac/Linux**
 
-venv\Scripts\activate
+    source venv/bin/activate
 
-Mac/Linux
+------------------------------------------------------------------------
 
-source venv/bin/activate
-3️⃣ Install Requirements
-pip install django
-4️⃣ Run Migrations
-python manage.py makemigrations
-python manage.py migrate
-5️⃣ Run Server
-python manage.py runserver
+### 3. Install Dependencies
 
-Open in browser:
+    pip install django
 
-http://127.0.0.1:8000/
-📸 Screenshots
+------------------------------------------------------------------------
 
-You can add screenshots of:
+### 4. Run Migrations
 
-Home Page
+    python manage.py makemigrations
+    python manage.py migrate
 
-Add Task
+------------------------------------------------------------------------
 
-Task List
+### 5. Run the Server
 
-Admin Panel
+    python manage.py runserver
 
-🎯 Learning Outcome
+Open in your browser:
+
+    http://127.0.0.1:8000/
+
+------------------------------------------------------------------------
+
+## 🎯 Learning Outcome
 
 This project helps beginners understand:
 
-Django project structure
+-   Django project structure
+-   Models, Views, Templates
+-   CRUD operations
+-   URL routing
+-   Django admin
 
-Models, Views, Templates
+------------------------------------------------------------------------
 
-CRUD operations
+## 👩‍💻 Author
 
-URL routing
+**Parvathy M**\
+GitHub: https://github.com/Mparvathy
 
-Django admin
+------------------------------------------------------------------------
 
-👩‍💻 Author
+## 📄 License
 
-Parvathy M
-
-GitHub:
-https://github.com/Mparvathy
-
-📄 License
-
-This project is for learning purposes.
+This project is created for **learning purposes**.
